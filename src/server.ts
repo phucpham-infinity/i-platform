@@ -20,7 +20,7 @@ export const app = express();
 app.use(morgan("combined"));
 
 app.set("view engine", "ejs");
-app.set("views", "./src/views");
+app.set("views", "./views");
 
 app.use(
   helmet({
@@ -38,7 +38,7 @@ app.use(
 );
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static("dist"));
+app.use(express.static("public"));
 
 app.use("/api", [UserRouter]);
 

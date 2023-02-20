@@ -1,17 +1,16 @@
 // rollup.config.js
 import typescript from "@rollup/plugin-typescript";
 import run from "@rollup/plugin-run";
-import { uglify } from "rollup-plugin-uglify";
-import replace from "rollup-plugin-replace";
+import replace from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
-import { terser } from "rollup-plugin-terser";
+import terser from "@rollup/plugin-terser";
 
 const isDev = process.env.NODE_ENV !== "production";
 
 export default {
   input: "src/server.ts",
   output: {
-    file: "dist/app.js",
+    file: "app.js",
     format: "cjs",
     sourcemap: false,
   },
@@ -20,7 +19,6 @@ export default {
     typescript({
       tsconfig: "./tsconfig.json",
     }),
-    uglify(),
     terser(),
     replace({
       ENV: JSON.stringify(process.env.NODE_ENV || "development"),
